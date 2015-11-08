@@ -84,6 +84,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     puts "Checking status: " + @game.check_win_or_lose.to_s
+    puts "Checking status: " + @game.word_with_guesses
     if (@game.check_win_or_lose == :lose)
       erb :lose # You may change/remove this line
     else

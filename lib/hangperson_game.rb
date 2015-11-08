@@ -49,7 +49,6 @@ class HangpersonGame
   # HangpersonGame game status should continue play if neither win nor lose
   
   def check_win_or_lose
-    @status = :play
     if(@count >6)
       @result = :lose
     else
