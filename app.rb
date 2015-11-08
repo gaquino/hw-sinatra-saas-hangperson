@@ -46,6 +46,10 @@ class HangpersonApp < Sinatra::Base
     begin
       if !(@game.guess(letter))
         flash[:message] = "You have already used that letter."
+      else
+        if(@game.count > 6)
+          flash[:message] = "GAME OVER because the guess limit is reached."  
+        end
       end
     rescue ArgumentError
       flash[:message] = "Invalid guess."
