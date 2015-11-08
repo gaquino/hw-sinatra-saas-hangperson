@@ -8,9 +8,65 @@ class HangpersonGame
   # def initialize()
   # end
   
-  def initialize(word)
-    @word = word
+  
+  attr_accessor :word,:guesses,:wrong_guesses,:count
+  
+  def guess (guess)
+    
+    raise ArgumentError.new("throws an error when nil") if guess.nil? # 'throws an error when nil'
+    raise ArgumentError.new("throws an error when empty") if guess.empty? # 'throws an error when empty'
+    raise ArgumentError.new("throws an error when not a letter") if !(!!(guess =~/[a-zA-Z]+/)) # 'throws an error when not a letter'
+    @count +=1
+    
+    guess = guess.downcase
+    if(word =~ /([#{guess}])/)
+    	return false if (@guesses =~ /([#{guess}])/)
+    	@guesses += guess
+    else
+    	return false if (@wrong_guesses =~ /([#{guess}])/)
+    	@wrong_guesses += guess
+    end
   end
+  
+  # display word with guessed items
+
+  def word_with_guesses
+    @work_guesses = @word
+
+    @word.chars do |myg| 
+      if !(@guesses =~ /([#{myg}])/)
+        @work_guesses.gsub!(myg,"-")  
+      end
+    end
+  end
+
+  # HangpersonGame game status should be win when all letters guessed
+  # HangpersonGame game status should be lose after 7 incorrect guesses
+  # HangpersonGame game status should continue play if neither win nor lose
+  
+  def check_win_or_lose
+    if(@count ==8)
+      @result = :lose
+    else
+      @result = word_with_guesses
+      if !(@result =~/[-]/)
+        @status = :win
+      else
+        @status = :play
+      end
+    end
+  end
+  
+  
+  # =========
+  def initialize(word)
+    @count =1
+    @word = word
+    @guesses = ''
+    @wrong_guesses = ''
+  end
+
+
 
   def self.get_random_word
     require 'uri'
