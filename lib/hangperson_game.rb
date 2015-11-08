@@ -16,15 +16,17 @@ class HangpersonGame
     raise ArgumentError.new("throws an error when nil") if guess.nil? # 'throws an error when nil'
     raise ArgumentError.new("throws an error when empty") if guess.empty? # 'throws an error when empty'
     raise ArgumentError.new("throws an error when not a letter") if !(!!(guess =~/[a-zA-Z]+/)) # 'throws an error when not a letter'
-    @count +=1
+    
     
     guess = guess.downcase
     if(word =~ /([#{guess}])/)
     	return false if (@guesses =~ /([#{guess}])/)
     	@guesses += guess
+    	@count +=1
     else
     	return false if (@wrong_guesses =~ /([#{guess}])/)
     	@wrong_guesses += guess
+    	@count +=1
     end
   end
   
