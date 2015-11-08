@@ -47,7 +47,7 @@ class HangpersonGame
   # HangpersonGame game status should continue play if neither win nor lose
   
   def check_win_or_lose
-    if(@count ==8)
+    if(@count >6)
       @result = :lose
     else
       @result = word_with_guesses
@@ -62,7 +62,7 @@ class HangpersonGame
   
   # =========
   def initialize(word)
-    @count =1
+    @count =0
     @word = word
     @guesses = ''
     @wrong_guesses = ''
