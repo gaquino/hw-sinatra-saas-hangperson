@@ -74,6 +74,7 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/win' do
+    puts "Checking status: " + @game.check_win_or_lose.to_s
     if (@game.check_win_or_lose == :win)
       erb :win # You may change/remove this line
     else
@@ -82,6 +83,7 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/lose' do
+    puts "Checking status: " + @game.check_win_or_lose.to_s
     if (@game.check_win_or_lose == :lose)
       erb :lose # You may change/remove this line
     else
