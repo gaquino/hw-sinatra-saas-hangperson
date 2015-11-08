@@ -78,4 +78,9 @@ class HangpersonApp < Sinatra::Base
     erb :lose # You may change/remove this line
   end
   
+  get '/word' do
+    flash[:message] = @game.word
+    erb :show # You may change/remove this line
+  end
+  
 end
