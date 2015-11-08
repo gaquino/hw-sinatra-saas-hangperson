@@ -31,13 +31,15 @@ class HangpersonGame
   # display word with guessed items
 
   def word_with_guesses
-    @work_guesses = @word
-
+    word_guesses = ""
     @word.chars do |myg| 
       if !(@guesses =~ /([#{myg}])/)
-        @work_guesses.gsub!(myg,"-")  
+        word_guesses += "-"
+      else
+        word_guesses += myg
       end
     end
+    word_guesses
   end
 
   # HangpersonGame game status should be win when all letters guessed

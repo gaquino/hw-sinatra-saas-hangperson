@@ -37,8 +37,13 @@ class HangpersonApp < Sinatra::Base
   # Use existing methods in HangpersonGame to process a guess.
   # If a guess is repeated, set flash[:message] to "You have already used that letter."
   # If a guess is invalid, set flash[:message] to "Invalid guess."
+  
+  #Extract the letter submitted on the form. (given above and in the code for you)
+  #Use that letter as a guess on the current game. (add this code in)
+  #Redirect to the show action so the player can see the result of their guess. (done for you as well)
   post '/guess' do
     letter = params[:guess].to_s[0]
+    @game.guess(letter)
     ### YOUR CODE HERE ###
     redirect '/show'
   end
