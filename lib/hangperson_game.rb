@@ -33,7 +33,12 @@ class HangpersonGame
   # display word with guessed items
 
   def word_with_guesses
-    word_guesses = ""
+    if (word.empty?)
+      word_guesses = "-"
+    else  
+      word_guesses = ""
+    end
+    
     @word.chars do |myg| 
       if !(@guesses =~ /([#{myg}])/)
         word_guesses += "-"
