@@ -63,6 +63,8 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     puts "Checking status: " + @game.check_win_or_lose.to_s
+    puts "Checking guesses: " + @game.word_with_guesses
+    puts "Checking word: " + @game.word
     if(@game.check_win_or_lose == :lose)
       redirect '/lose'
     elsif (@game.check_win_or_lose == :win)
@@ -75,6 +77,8 @@ class HangpersonApp < Sinatra::Base
   
   get '/win' do
     puts "Checking status: " + @game.check_win_or_lose.to_s
+    puts "Checking guesses: " + @game.word_with_guesses
+    puts "Checking word: " + @game.word
     if (@game.check_win_or_lose == :win)
       erb :win # You may change/remove this line
     else
@@ -84,7 +88,8 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     puts "Checking status: " + @game.check_win_or_lose.to_s
-    puts "Checking status: " + @game.word_with_guesses
+    puts "Checking guesses: " + @game.word_with_guesses
+    puts "Checking word: " + @game.word
     if (@game.check_win_or_lose == :lose)
       erb :lose # You may change/remove this line
     else
