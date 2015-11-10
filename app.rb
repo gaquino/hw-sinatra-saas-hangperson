@@ -48,7 +48,7 @@ class HangpersonApp < Sinatra::Base
         flash[:message] = "You have already used that letter."
       else
         if(@game.count > 6)
-          flash[:message] = "GAME OVER because the guess limit is reached."  
+          flash[:message] = "Sorry, you lose!"  
         end
       end
     rescue ArgumentError
@@ -70,7 +70,12 @@ class HangpersonApp < Sinatra::Base
     puts "Checking guesses: " + @game.word_with_guesses
     puts "Checking word: " + @game.word
     if(@game.check_win_or_lose == :lose)
-      redirect '/lose'
+      if(@game.count > 6)
+        erb :show  
+      else
+        redirect '/lose'
+      end
+      
     elsif (@game.check_win_or_lose == :win)
       redirect '/win'
     else
